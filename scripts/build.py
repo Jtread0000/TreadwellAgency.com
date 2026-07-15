@@ -716,6 +716,23 @@ def about_body():
     )
 
 
+# ---------------------------------------------------------------- 404
+def not_found_body():
+    return """<div>
+  <div class="band" style="overflow:hidden;background:var(--tw-grad-yellow);">
+    <div class="wrap" style="padding:120px 28px 128px;text-align:center;">
+      <span class="tw-eyebrow" style="color:var(--tw-blue);justify-content:center;">Error 404</span>
+      <h1 class="hero-h1" style="font-size:clamp(2.6rem,6vw,5rem);line-height:.95;color:var(--tw-black);margin:18px auto 0;max-width:16ch;">This page took a <span style="color:var(--tw-red);">detour</span></h1>
+      <p class="lead" style="color:rgba(10,10,10,.78);max-width:48ch;margin:24px auto 34px;font-weight:500;">The page you're looking for isn't here &mdash; but your readiness journey can still start from the beginning.</p>
+      <div class="btn-row" style="justify-content:center;">
+        <a class="tw-btn tw-btn--primary tw-btn--lg" href="/">Back to home</a>
+        <a class="tw-btn tw-btn--outline tw-btn--lg" href="/ai-readiness/">Explore AI Readiness</a>
+      </div>
+    </div>
+  </div>
+</div>"""
+
+
 # ================================================================== build
 PAGES = [
     ("index.html", "", "home",
@@ -742,6 +759,10 @@ PAGES = [
      "About — Treadwell Agency",
      "A human capability company. Founded in 2011, Treadwell Agency is a human-first transformation agency for the age of AI, partnering with corporations, institutions, and public agencies.",
      about_body),
+    ("404.html", "/404.html", "",
+     "Page not found — Treadwell Agency",
+     "The page you're looking for could not be found.",
+     not_found_body),
 ]
 
 
