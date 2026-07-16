@@ -91,6 +91,7 @@ def logo(tone="blue", size=30):
 NAV = [
     ("Services", "/services/", "services"),
     ("Training", "/training/", "training"),
+    ("Workshops", "/workshops/", "workshops"),
     ("AI Readiness", "/ai-readiness/", "readiness"),
     ("Approach", "/approach/", "approach"),
 ]
@@ -443,6 +444,49 @@ def training_body():
     )
 
 
+# ---------------------------------------------------------------- WORKSHOPS
+def workshops_body():
+    edu_tag = '<span class="tw-tag tw-tag--yellow tw-tag--soft">Education</span>'
+    biz_tag = '<span class="tw-tag tw-tag--blue tw-tag--soft">Business</span>'
+    cards = "".join([
+        detail_card("grad", "Prompt School",
+            "A hands-on workshop that teaches people to think <em>with</em> AI, not just type at it &mdash; practical, responsible prompting built for the classroom and the public sector. Delivered to student cohorts, faculty, and public-sector teams.",
+            ["For schools, universities &amp; public institutions", "Responsible, practical prompt fluency", "Student, educator &amp; staff cohorts", "Hands-on and classroom-ready"],
+            "Learners who think clearly with AI.", tag_html=edu_tag),
+        detail_card("route", "AI for Business Growth",
+            "A working session that turns AI from hype into measurable growth &mdash; helping teams find where AI actually moves the business and put it to work. Tailored for organizations and the groups that convene them.",
+            ["For companies, industry groups &amp; associations", "AI applied to real business outcomes", "Leadership &amp; team workshops", "From experimentation to results"],
+            "A team that grows the business with AI.", tag_html=biz_tag),
+    ])
+    return """<div>
+  <div class="band" style="background:var(--tw-black);padding:96px 28px 84px;overflow:hidden;">
+    <img class="motif" src="/assets/elements/White-Donut.png" alt="" aria-hidden="true" style="right:-70px;bottom:-70px;width:540px;opacity:.45;">
+    <div class="wrap">
+      {eb}
+      <h1 class="hero-h1" style="font-size:clamp(2.4rem,5.5vw,4.5rem);line-height:.95;color:#fff;max-width:18ch;">Workshops that turn AI curiosity into capability</h1>
+      <p class="lead" style="color:rgba(255,255,255,.82);max-width:56ch;margin-top:22px;">Live, human-first workshops that meet people where they are &mdash; from classrooms to boardrooms &mdash; and leave them able to use AI with confidence and judgment.</p>
+      <div class="tag-row" style="margin-top:30px;">
+        <span class="tw-tag tw-tag--yellow tw-tag--solid">Prompt School</span>
+        <span class="tw-tag tw-tag--blue tw-tag--solid">AI for Business Growth</span>
+      </div>
+    </div>
+  </div>
+  <section style="background:var(--bg);padding:88px 28px;">
+    <div class="wrap" style="max-width:1100px;display:grid;gap:22px;">
+      {cards}
+    </div>
+  </section>
+  {cta}
+</div>""".format(
+        eb=eyebrow("Live Workshops", "var(--tw-yellow)"),
+        cards=cards,
+        cta=cta_strip(
+            "Bring a workshop to your people",
+            "Every workshop is shaped to your audience, size, and goals &mdash; on-site or virtual. Tell us who's in the room and we'll tailor it.",
+            "Book a consultation", CTA_MAILTO, "accent"),
+    )
+
+
 # ---------------------------------------------------------------- AI READINESS
 def readiness_body():
     method = [
@@ -747,6 +791,10 @@ PAGES = [
      "Training — Treadwell Agency",
      "Practical, credential-aligned training for corporations: AI & digital-fluency courses, WIOA-funded workforce programs, and annual cybersecurity awareness training.",
      training_body),
+    ("workshops/index.html", "/workshops/", "workshops",
+     "Workshops — Treadwell Agency",
+     "Live, human-first AI workshops: Prompt School for schools, universities & public institutions, and AI for Business Growth for companies, industry groups & associations.",
+     workshops_body),
     ("ai-readiness/index.html", "/ai-readiness/", "readiness",
      "AI Readiness — Treadwell Agency",
      "From experimentation to operating model. The See. Solve. Scale. methodology and the free AI Readiness Canvas — four ways to work with us, from advisor to enterprise engagement.",
