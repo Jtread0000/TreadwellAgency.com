@@ -220,20 +220,15 @@ def belief_band():
 </section>"""
 
 
-def newsletter_band(source, audience=""):
-    chips = "" if audience else """<div class="nl-aud" role="radiogroup" aria-label="I am" style="display:flex;gap:8px;flex-wrap:wrap;">
-        <label style="display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border:2px solid #000;border-radius:999px;background:#fff;font-weight:700;cursor:pointer;"><input type="radio" name="audience" value="individual" checked> I am a person</label>
-        <label style="display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border:2px solid #000;border-radius:999px;background:#fff;font-weight:700;cursor:pointer;"><input type="radio" name="audience" value="organization"> I am with a company</label>
-      </div>"""
+def newsletter_band(source, audience, kicker, title, copy):
     return """<section class="band" style="background:var(--tw-yellow);padding:72px 28px;">
   <div class="wrap" style="max-width:1000px;display:grid;grid-template-columns:1.2fr 1fr;gap:36px;align-items:center;" data-nl-grid>
     <div>
-      <div style="font-family:var(--font-mono);font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#000;">Newsletter</div>
-      <h3 style="font-family:var(--font-display);font-weight:900;text-transform:uppercase;font-size:clamp(1.6rem,3vw,2.4rem);letter-spacing:-.02em;line-height:1.02;margin:12px 0 10px;color:#000;">Think alongside us.</h3>
-      <p style="margin:0;color:#000;line-height:1.55;max-width:48ch;">Workforce readiness, career evolution, and what AI is doing to work. Occasional, never noisy.</p>
+      <div style="font-family:var(--font-mono);font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#000;">{kicker}</div>
+      <h3 style="font-family:var(--font-display);font-weight:900;text-transform:uppercase;font-size:clamp(1.6rem,3vw,2.4rem);letter-spacing:-.02em;line-height:1.02;margin:12px 0 10px;color:#000;">{title}</h3>
+      <p style="margin:0;color:#000;line-height:1.55;max-width:48ch;">{copy}</p>
     </div>
     <form class="nl-form" data-source="{src}" data-audience="{aud}" style="display:grid;gap:10px;" novalidate>
-      {chips}
       <input name="firstName" placeholder="Full name" autocomplete="name" aria-label="Full name" style="padding:14px 16px;border:2px solid #000;border-radius:8px;font:inherit;font-size:16px;background:#fff;">
       <input name="email" type="email" placeholder="Email" autocomplete="email" aria-label="Email" required style="padding:14px 16px;border:2px solid #000;border-radius:8px;font:inherit;font-size:16px;background:#fff;">
       <input name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;">
@@ -241,8 +236,7 @@ def newsletter_band(source, audience=""):
       <p class="nl-msg" role="status" style="margin:0;font-size:14px;color:#000;min-height:1.2em;"></p>
     </form>
   </div>
-</section>""".format(src=source, aud=audience, chips=chips)
-
+</section>""".format(src=source, aud=audience, kicker=kicker, title=title, copy=copy)
 
 def cta_strip(heading, body_html, btn_label, btn_href, btn_variant="accent"):
     body = (
@@ -378,12 +372,9 @@ def home_body():
 
   {topic}
 
-  {newsletter}
-
   {belief}
 </div>""".format(
         eb=eyebrow("Workforce &amp; Organization Transformation"),
-        newsletter=newsletter_band("treadwellagency.com/home"),
         cta=CTA_MAILTO,
         arrow=svg("arrow", 18, 2.5),
         eb_phil=eyebrow("Our philosophy", "var(--tw-yellow)"),
@@ -455,7 +446,7 @@ def individuals_body():
   {belief}
 </div>""".format(
         eb=eyebrow("For individuals"),
-        newsletter=newsletter_band("treadwellagency.com/individuals", "individual"),
+        newsletter=newsletter_band("treadwellagency.com/individuals", "individual", "The Career Evolution letter", "Keep evolving.", "For people navigating their own careers: where work is heading, which capabilities travel, and how to make the next move with evidence instead of guesswork. Occasional, never noisy."),
         arrow=svg("arrow", 18, 2.5),
         curious=mailto("Career curiosity conversation"),
         eb_do=eyebrow("What we offer"),
@@ -515,7 +506,7 @@ def organizations_body():
   {belief}
 </div>""".format(
         eb=eyebrow("For organizations", "var(--tw-yellow)"),
-        newsletter=newsletter_band("treadwellagency.com/organizations", "organization"),
+        newsletter=newsletter_band("treadwellagency.com/organizations", "organization", "The Workforce Readiness letter", "Ready your people.", "For leaders preparing a workforce for AI: readiness, role evolution, what is working in other organizations, and executive briefings as they publish. Occasional, never noisy."),
         arrow=svg("arrow", 18, 2.5),
         mail=CTA_MAILTO,
         cta=cta_strip("Tell us about the team and the problem", "A 30-minute fit call, honest about whether this is a workshop, a session, advisory, or not a fit. Then scope, dates, work.", "Book a consultation", CTA_MAILTO, "accent"),
