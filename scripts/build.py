@@ -89,12 +89,13 @@ def logo(tone="blue", size=30):
 
 # ------------------------------------------------------------------ nav
 NAV = [
-    ("Services", "/services/", "services"),
-    ("Training", "/training/", "training"),
+    ("Individuals", "/individuals/", "individuals"),
+    ("Organizations", "/organizations/", "organizations"),
     ("Workshops", "/workshops/", "workshops"),
     ("AI Readiness", "/ai-readiness/", "readiness"),
     ("Approach", "/approach/", "approach"),
 ]
+FOOT_EXTRA = [("Services", "/services/"), ("Training", "/training/"), ("About", "/about/")]
 
 
 def header(active):
@@ -141,7 +142,7 @@ def footer():
     </div>
     <div>
       <div class="foot-h">Explore</div>
-      <div class="foot-links">{links}<a href="/about/">About</a></div>
+      <div class="foot-links">{links}{extra}</div>
     </div>
     <div>
       <div class="foot-h">Get in touch</div>
@@ -153,6 +154,7 @@ def footer():
 </footer>""".format(
         logo=logo("white", 28),
         links=links,
+        extra="".join('<a href="{h}">{l}</a>'.format(h=h, l=l) for l, h in FOOT_EXTRA),
         mail="mailto:" + EMAIL,
         email=EMAIL,
         cta=CTA_MAILTO,
@@ -313,15 +315,21 @@ def home_body():
       {eb}
       <h1 class="hero-h1" style="font-size:clamp(3rem,7vw,6rem);line-height:.92;color:var(--tw-black);max-width:15ch;">We solve for the <span style="color:var(--tw-red);">human</span> factor</h1>
       <p class="lead" style="color:rgba(10,10,10,.78);max-width:52ch;margin:26px 0 34px;font-weight:500;">Treadwell prepares leaders, employees, and businesses for the future of work in the age of AI &mdash; and beyond. We start with your business outcomes, not the tools.</p>
-      <div class="btn-row">
-        <a class="tw-btn tw-btn--primary tw-btn--lg" href="{cta}">Book a consultation {arrow}</a>
-        <a class="tw-btn tw-btn--outline tw-btn--lg" href="/approach/">Explore our approach</a>
+      <div class="doors" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;max-width:760px;">
+        <a class="tw-card tw-card--interactive" href="/individuals/" style="display:flex;flex-direction:column;gap:10px;text-decoration:none;color:var(--tw-black);background:#fff;">
+          <span style="font-family:var(--font-mono);font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--tw-blue);">I am a person</span>
+          <span style="font-family:var(--font-display);font-weight:900;text-transform:uppercase;font-size:24px;letter-spacing:-.01em;line-height:1.05;">Evolve your career</span>
+          <span style="color:var(--text-body);line-height:1.5;">Explore what you could become, build the capabilities to get there, and keep up as work changes.</span>
+          <span style="font-weight:700;color:var(--tw-blue);margin-top:auto;">For individuals {arrow}</span>
+        </a>
+        <a class="tw-card tw-card--interactive" href="/organizations/" style="display:flex;flex-direction:column;gap:10px;text-decoration:none;color:#fff;background:var(--tw-black);">
+          <span style="font-family:var(--font-mono);font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--tw-yellow);">I am a company</span>
+          <span style="font-family:var(--font-display);font-weight:900;text-transform:uppercase;font-size:24px;letter-spacing:-.01em;line-height:1.05;">Ready your workforce</span>
+          <span style="color:rgba(255,255,255,.82);line-height:1.5;">AI readiness, workforce transformation, and the training that makes the technology worth it.</span>
+          <span style="font-weight:700;color:var(--tw-yellow);margin-top:auto;">For organizations {arrow}</span>
+        </a>
       </div>
-      <div class="tag-row" style="margin-top:40px;">
-        <span class="tw-tag tw-tag--blue tw-tag--solid">Workforce Readiness</span>
-        <span class="tw-tag tw-tag--neutral tw-tag--solid">Organizational Transformation</span>
-        <span class="tw-tag tw-tag--red tw-tag--solid">AI Strategy</span>
-      </div>
+      <p style="margin:26px 0 0;color:rgba(10,10,10,.7);">Not sure which? <a href="{cta}" style="color:var(--tw-black);font-weight:700;">Book a consultation</a> and we will point you to the right door.</p>
     </div>
   </div>
 
@@ -355,6 +363,133 @@ def home_body():
         eb_do=eyebrow("What we do"),
         cards=cards,
         topic=topic,
+        belief=belief_band(),
+    )
+
+
+# ---------------------------------------------------------------- INDIVIDUALS (B2C)
+def individuals_body():
+    cards = "".join([
+        detail_card("sparkle", "Prompt School",
+            "A hands-on AI literacy workshop that teaches you to think with AI, not just type at it. Free public sessions, starting at Bowie State University, and a virtual course on the way.",
+            ["Three hours, zero experience required", "Learn to prompt, then build an agent", "A certificate you can show", "Next session: Nov 10, 2026"],
+            "You leave able to put AI to work for yourself.",
+            '<span class="tw-tag tw-tag--green tw-tag--soft">Open now</span>'),
+        detail_card("eye", "Career Curiosity",
+            "Explore careers through exposure and evidence before you commit to a path. Many people rule out whole fields on a first impression; a conversation and a few structured looks change that.",
+            ["A conversation about where you are and where you could go", "Industry exploration and professional exposure", "Career foresight: how your field is changing", "Honest about what you would need to learn"],
+            "Career awareness, curiosity, and a decision you can defend.",
+            '<span class="tw-tag tw-tag--blue tw-tag--soft">By conversation</span>'),
+        detail_card("route", "CareerReady",
+            "A structured path from where you are to where you want to be: readiness assessment, transferable and adjacent skills, professional identity, transition planning, and coaching through the move.",
+            ["Readiness assessment and personal pathway", "Adjacent skills you already have", "AI and workforce literacy", "Mobility coaching, interview prep, placement support"],
+            "The knowledge, confidence, and agency to pursue the next role.",
+            '<span class="tw-tag tw-tag--yellow tw-tag--soft">Waitlist</span>'),
+    ])
+    waitlist = mailto("CareerReady waitlist") + quote("\n\nWhere I am today:\n\nWhere I think I could go:\n\nWhat I believe I am missing:\n").replace("%0A", "%0D%0A")
+    return """<div>
+  <div class="band" style="overflow:hidden;background:var(--tw-grad-yellow);">
+    <img class="motif" src="/assets/elements/White-Track.png" alt="" aria-hidden="true" style="right:-60px;top:-40px;width:904px;height:848px;opacity:.55;">
+    <div class="wrap" style="padding:104px 28px 96px;">
+      {eb}
+      <h1 class="hero-h1" style="font-size:clamp(2.6rem,6vw,5rem);line-height:.95;color:var(--tw-black);max-width:16ch;">Your career is evolving. <span style="color:var(--tw-red);">So can you.</span></h1>
+      <p class="lead" style="color:rgba(10,10,10,.78);max-width:54ch;margin:26px 0 34px;font-weight:500;">Work is changing faster than any one job description. We help you discover what you could become, build the capabilities to get there, and keep moving as the ground shifts.</p>
+      <div class="btn-row">
+        <a class="tw-btn tw-btn--primary tw-btn--lg" href="https://joinpromptschool.com/workshops/fa26bsu">Join Prompt School {arrow}</a>
+        <a class="tw-btn tw-btn--outline tw-btn--lg" href="{curious}">Start a conversation</a>
+      </div>
+    </div>
+  </div>
+  <section style="background:var(--bg);padding:88px 28px;">
+    <div class="wrap" style="max-width:1100px;display:grid;gap:22px;">
+      {eb_do}
+      <h2 class="h2-display" style="font-size:clamp(2rem,4vw,3.25rem);margin:14px 0 16px;max-width:22ch;">Three ways to evolve</h2>
+      {cards}
+    </div>
+  </section>
+  <section style="background:var(--tw-neutral-50);padding:0 28px 96px;">
+    <div class="wrap">
+      <article class="tw-card tw-card--signal">
+        <div class="topic-grid">
+          <div>
+            {eb_wl}
+            <h3 style="font-family:var(--font-display);font-weight:900;text-transform:uppercase;font-size:clamp(1.6rem,3vw,2.4rem);letter-spacing:-.02em;line-height:1.02;margin:14px 0 12px;">Join the CareerReady waitlist</h3>
+            <p style="margin:0 0 22px;color:rgba(10,10,10,.78);line-height:1.55;max-width:52ch;">Three questions. Where you are, where you think you could go, and what you believe you are missing. Your answers shape the program and you hear first when it opens.</p>
+            <a class="tw-btn tw-btn--primary" href="{waitlist}">Join the waitlist</a>
+          </div>
+          <div style="display:grid;gap:12px;">
+            {facts}
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+  {belief}
+</div>""".format(
+        eb=eyebrow("For individuals"),
+        arrow=svg("arrow", 18, 2.5),
+        curious=mailto("Career curiosity conversation"),
+        eb_do=eyebrow("What we offer"),
+        cards=cards,
+        eb_wl=eyebrow("Coming next", "var(--tw-black)"),
+        waitlist=waitlist,
+        facts="".join(
+            '<div style="background:rgba(10,10,10,.06);border-radius:10px;padding:16px 18px;">'
+            '<div style="font-family:var(--font-mono);font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(10,10,10,.6);">{k}</div>'
+            '<div style="font-weight:700;margin-top:4px;">{v}</div></div>'.format(k=k, v=v)
+            for k, v in [("Who", "Career changers, early career, anyone facing displacement"), ("Format", "Assessment, pathway, coaching"), ("Also coming", "Adoption Score: how ready you are to take on new work")]
+        ),
+        belief=belief_band(),
+    )
+
+
+# ---------------------------------------------------------------- ORGANIZATIONS (B2B)
+def organizations_body():
+    cards = "".join(
+        """<a class="tw-card tw-card--interactive" href="{href}" style="display:flex;flex-direction:column;gap:12px;text-decoration:none;color:inherit;">
+      <span class="icon-chip-blue">{icon}</span>
+      <h3 style="font-family:var(--font-display);font-weight:800;font-size:22px;margin:0;text-transform:uppercase;letter-spacing:-.01em;">{t}</h3>
+      <p style="margin:0;color:var(--text-body);line-height:1.55;">{d}</p>
+      <span style="font-weight:700;color:var(--tw-blue);margin-top:auto;">{l} {arrow}</span>
+    </a>""".format(icon=svg(ic, 24), t=t, d=d, href=h, l=l, arrow=svg("arrow", 16, 2.5))
+        for ic, t, d, h, l in [
+            ("brain", "AI Readiness", "From experimentation to operating model. Four pathways, from an on-demand advisor to a full engagement, built on the AI Readiness Canvas and See. Solve. Scale.", "/ai-readiness/", "See the pathways"),
+            ("grad", "Workforce Readiness and Training", "Role-based courses, WIOA-funded programs, and annual cybersecurity training that build durable capability from frontline to executive.", "/training/", "See training"),
+            ("workflow", "Organizational Transformation", "Governance, modernization, and human-centered change that moves AI into how the organization actually operates.", "/services/", "See services"),
+            ("users", "Workshops", "Prompt School for schools and public institutions, AI for Business Growth for companies and associations. Live, on-site or virtual.", "/workshops/", "See workshops"),
+        ]
+    )
+    return """<div>
+  <div class="band" style="background:var(--tw-blue);padding:104px 28px 92px;overflow:hidden;">
+    <img class="motif" src="/assets/elements/White-Donut.png" alt="" aria-hidden="true" style="right:-80px;top:-40px;width:480px;opacity:.5;">
+    <div class="wrap">
+      {eb}
+      <h1 class="hero-h1" style="font-size:clamp(2.6rem,6vw,5rem);line-height:.95;color:#fff;max-width:16ch;">Ready your workforce for what comes next</h1>
+      <p class="lead" style="color:rgba(255,255,255,.82);max-width:56ch;margin-top:22px;">Workforce readiness and transformation for the age of AI. We start with the outcomes your business is trying to reach, then build the human capability that makes the technology worth what you paid for it.</p>
+      <div class="btn-row" style="margin-top:30px;">
+        <a class="tw-btn tw-btn--accent tw-btn--lg" href="{mail}">Book a consultation {arrow}</a>
+        <a class="tw-btn tw-btn--inverse tw-btn--lg" href="/ai-readiness/">Start with AI Readiness</a>
+      </div>
+    </div>
+  </div>
+  <section style="background:var(--bg);padding:88px 28px;">
+    <div class="wrap">
+      {eb_do}
+      <h2 class="h2-display" style="font-size:clamp(2rem,4vw,3.25rem);margin:14px 0 40px;max-width:22ch;">Four doors in</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px;">
+        {cards}
+      </div>
+    </div>
+  </section>
+  {cta}
+  {belief}
+</div>""".format(
+        eb=eyebrow("For organizations", "var(--tw-yellow)"),
+        arrow=svg("arrow", 18, 2.5),
+        mail=CTA_MAILTO,
+        cta=cta_strip("Tell us about the team and the problem", "A 30-minute fit call, honest about whether this is a workshop, a session, advisory, or not a fit. Then scope, dates, work.", "Book a consultation", CTA_MAILTO, "accent"),
+        eb_do=eyebrow("Where to start"),
+        cards=cards,
         belief=belief_band(),
     )
 
@@ -783,6 +918,14 @@ PAGES = [
      "Treadwell Agency — We solve for the human factor",
      "Workforce & organization transformation for the age of AI. Treadwell prepares leaders, employees, and businesses for the future of work — starting with your outcomes, not the tools.",
      home_body),
+    ("individuals/index.html", "/individuals/", "individuals",
+     "For individuals — Treadwell Agency",
+     "Your career is evolving. So can you. Prompt School, Career Curiosity conversations, and the CareerReady waitlist: discover what you could become and build the capabilities to get there.",
+     individuals_body),
+    ("organizations/index.html", "/organizations/", "organizations",
+     "For organizations — Treadwell Agency",
+     "Ready your workforce for what comes next. AI readiness, workforce training, organizational transformation, and live workshops, starting from your business outcomes.",
+     organizations_body),
     ("services/index.html", "/services/", "services",
      "Services — Treadwell Agency",
      "Outcomes first, tools second. Workforce readiness, organizational transformation, and AI strategy — closing the gap between how fast AI changes work and how fast your people adapt.",
