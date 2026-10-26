@@ -329,3 +329,4 @@ section, .band { position: relative; }
 @media (max-width: 720px) {
   .topic-grid { grid-template-columns: 1fr !important; gap: 24px !important; }
 }
+@media (max-width: 720px) { [data-nl-grid] { grid-template-columns: 1fr !important; } }
