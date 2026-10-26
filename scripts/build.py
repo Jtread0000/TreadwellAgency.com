@@ -95,7 +95,7 @@ NAV = [
     ("AI Readiness", "/ai-readiness/", "readiness"),
     ("Approach", "/approach/", "approach"),
 ]
-FOOT_EXTRA = [("Services", "/services/"), ("Training", "/training/"), ("About", "/about/")]
+FOOT_EXTRA = [("Services", "/services/"), ("Training", "/training/"), ("About", "/about/"), ("Contact", "/contact/")]
 
 
 def header(active):
@@ -513,6 +513,37 @@ def organizations_body():
         eb_do=eyebrow("Where to start"),
         cards=cards,
         belief=belief_band(),
+    )
+
+
+# ---------------------------------------------------------------- CONTACT
+def contact_body():
+    return """<div>
+  <div class="band" style="background:var(--tw-black);padding:96px 28px 84px;overflow:hidden;">
+    <img class="motif" src="/assets/elements/Yellow-Waves.png" alt="" aria-hidden="true" style="left:50%;top:50%;transform:translate(-50%,-50%);width:1200px;opacity:.14;">
+    <div class="wrap">
+      {eb}
+      <h1 class="hero-h1" style="font-size:clamp(2.4rem,5.5vw,4.5rem);line-height:.95;color:#fff;max-width:16ch;">Tell us about the room</h1>
+      <p class="lead" style="color:rgba(255,255,255,.82);max-width:54ch;margin-top:22px;">Keynotes, workshops, advisory, training, or a career question of your own. One address reaches a person, and we reply personally.</p>
+      <div class="btn-row" style="margin-top:30px;">
+        <a class="tw-btn tw-btn--accent tw-btn--lg" href="{cta}">Book a consultation {arrow}</a>
+        <a class="tw-btn tw-btn--inverse tw-btn--lg" href="mailto:{email}">{email}</a>
+      </div>
+    </div>
+  </div>
+  <section style="background:var(--bg);padding:72px 28px;">
+    <div class="wrap" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px;">
+      <a class="tw-card tw-card--interactive" href="/individuals/" style="text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:8px;"><span class="icon-chip-blue">{i1}</span><h3 style="font-family:var(--font-display);font-weight:800;font-size:20px;margin:0;text-transform:uppercase;">For individuals</h3><p style="margin:0;color:var(--text-body);">Prompt School, career conversations, the CareerReady waitlist.</p></a>
+      <a class="tw-card tw-card--interactive" href="/organizations/" style="text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:8px;"><span class="icon-chip-blue">{i2}</span><h3 style="font-family:var(--font-display);font-weight:800;font-size:20px;margin:0;text-transform:uppercase;">For organizations</h3><p style="margin:0;color:var(--text-body);">AI readiness, training, transformation, workshops.</p></a>
+      <a class="tw-card tw-card--interactive" href="https://simciasecurity.com" style="text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:8px;"><span class="icon-chip-blue">{i3}</span><h3 style="font-family:var(--font-display);font-weight:800;font-size:20px;margin:0;text-transform:uppercase;">Cybersecurity</h3><p style="margin:0;color:var(--text-body);">Compliance and human-risk advisory run through Simcia Security.</p></a>
+    </div>
+  </section>
+  {newsletter}
+</div>""".format(
+        eb=eyebrow("Contact", "var(--tw-yellow)"),
+        cta=CTA_MAILTO, email=EMAIL, arrow=svg("arrow", 18, 2.5),
+        i1=svg("users", 24), i2=svg("building", 24), i3=svg("shield", 24),
+        newsletter=newsletter_band("treadwellagency.com/contact", "", "Newsletter", "Think alongside us.", "The general Treadwell letter: workforce readiness, career evolution, and what AI is doing to work. Occasional, never noisy."),
     )
 
 
@@ -968,6 +999,10 @@ PAGES = [
      "Approach — Treadwell Agency",
      "Human-first digital transformation. We grow human capability faster than technology increases complexity — people before tools, augment don't replace, outcomes before AI.",
      approach_body),
+    ("contact/index.html", "/contact/", "contact",
+     "Contact — Treadwell Agency",
+     "Tell us about the room. Keynotes, workshops, advisory, training, or a career question of your own. One address reaches a person.",
+     contact_body),
     ("about/index.html", "/about/", "about",
      "About — Treadwell Agency",
      "A human capability company. Founded in 2011, Treadwell Agency is a human-first transformation agency for the age of AI, partnering with corporations, institutions, and public agencies.",
