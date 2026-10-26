@@ -125,7 +125,11 @@
       <h3 style="font-family:var(--font-display);font-weight:900;text-transform:uppercase;font-size:clamp(1.6rem,3vw,2.4rem);letter-spacing:-.02em;line-height:1.02;margin:12px 0 10px;color:#000;">Think alongside us.</h3>
       <p style="margin:0;color:#000;line-height:1.55;max-width:48ch;">Workforce readiness, career evolution, and what AI is doing to work. Occasional, never noisy.</p>
     </div>
-    <form class="nl-form" data-source="treadwellagency.com/home" style="display:grid;gap:10px;" novalidate>
+    <form class="nl-form" data-source="treadwellagency.com/home" data-audience="" style="display:grid;gap:10px;" novalidate>
+      <div class="nl-aud" role="radiogroup" aria-label="I am" style="display:flex;gap:8px;flex-wrap:wrap;">
+        <label style="display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border:2px solid #000;border-radius:999px;background:#fff;font-weight:700;cursor:pointer;"><input type="radio" name="audience" value="individual" checked> I am a person</label>
+        <label style="display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border:2px solid #000;border-radius:999px;background:#fff;font-weight:700;cursor:pointer;"><input type="radio" name="audience" value="organization"> I am with a company</label>
+      </div>
       <input name="firstName" placeholder="Full name" autocomplete="name" aria-label="Full name" style="padding:14px 16px;border:2px solid #000;border-radius:8px;font:inherit;font-size:16px;background:#fff;">
       <input name="email" type="email" placeholder="Email" autocomplete="email" aria-label="Email" required style="padding:14px 16px;border:2px solid #000;border-radius:8px;font:inherit;font-size:16px;background:#fff;">
       <input name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;">
