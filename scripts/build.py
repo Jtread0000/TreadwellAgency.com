@@ -150,7 +150,7 @@ def footer():
       <div style="margin-top:16px;"><a class="tw-btn tw-btn--signal tw-btn--sm" href="{cta}">Book a consultation</a></div>
     </div>
   </div>
-  <div class="foot-bottom">&copy; 2026 Treadwell Agency LLC &middot; We solve for the human factor</div>
+  <div class="foot-bottom">&copy; 2026 Treadwell Agency LLC &middot; Based in Prince George&rsquo;s County, Maryland &middot; We solve for the human factor</div>
 </footer>""".format(
         logo=logo("white", 28),
         links=links,
@@ -310,9 +310,9 @@ def home_body():
       <div class="topic-grid" style="display:grid;grid-template-columns:1.4fr 1fr;gap:36px;align-items:center;">
         <div>
           {eb}
-          <h3 style="font-family:var(--font-display);font-weight:900;text-transform:uppercase;font-size:clamp(1.6rem,3vw,2.4rem);letter-spacing:-.02em;line-height:1.02;margin:14px 0 12px;">Turning AI pilots into an operating model</h3>
-          <p style="margin:0 0 22px;color:rgba(10,10,10,.78);line-height:1.55;max-width:52ch;">A facilitated leadership session for teams stuck between experimentation and enterprise adoption. Complete the AI Readiness Canvas together and leave with an actionable roadmap.</p>
-          <a class="tw-btn tw-btn--primary" href="{cta}">Reserve a seat</a>
+          <h3 style="font-family:var(--font-display);font-weight:900;text-transform:uppercase;font-size:clamp(1.6rem,3vw,2.4rem);letter-spacing:-.02em;line-height:1.02;margin:14px 0 12px;">Prompt School. Learn to prompt. Build an agent.</h3>
+          <p style="margin:0 0 22px;color:rgba(10,10,10,.78);line-height:1.55;max-width:52ch;">A hands-on, three-hour workshop in two levels. 1.0 teaches your people to brief an AI so it does what they mean. 2.0 has them build a real workflow and leave with an agent they made. On site or online, for schools, small businesses, and teams. Next public session: Bowie State University, Nov 10.ble roadmap.</p>
+          <a class="tw-btn tw-btn--primary" href="https://joinpromptschool.com">See Prompt School</a>
         </div>
         <div style="display:grid;gap:12px;">
           {facts}
@@ -321,13 +321,13 @@ def home_body():
     </article>
   </div>
 </section>""".format(
-        eb=eyebrow("Workshop · Topic this month", "var(--tw-black)"),
+        eb=eyebrow("Workshop · Prompt School", "var(--tw-black)"),
         cta=CTA_MAILTO,
         facts="".join(
             '<div style="background:rgba(10,10,10,.06);border-radius:10px;padding:16px 18px;">'
             '<div style="font-family:var(--font-mono);font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(10,10,10,.6);">{k}</div>'
             '<div style="font-weight:700;margin-top:4px;">{v}</div></div>'.format(k=k, v=v)
-            for k, v in [("Format", "Facilitated, half-day"), ("For", "Leadership teams"), ("Outcome", "Aligned AI roadmap")]
+            for k, v in [("Format", "Three hours, on site or online"), ("For", "Schools, small businesses, teams"), ("Outcome", "A workflow you leave with")]
         ),
     )
 
@@ -484,7 +484,7 @@ def organizations_body():
             ("brain", "AI Readiness", "From experimentation to operating model. Four pathways, from an on-demand advisor to a full engagement, built on the AI Readiness Canvas and See. Solve. Scale.", "/ai-readiness/", "See the pathways"),
             ("grad", "Workforce Readiness and Training", "Role-based courses, WIOA-funded programs, and annual cybersecurity training that build durable capability from frontline to executive.", "/training/", "See training"),
             ("workflow", "Organizational Transformation", "Governance, modernization, and human-centered change that moves AI into how the organization actually operates.", "/services/", "See services"),
-            ("users", "Workshops", "Prompt School for schools and public institutions, AI for Business Growth for companies and associations. Live, on-site or virtual.", "/workshops/", "See workshops"),
+            ("users", "Workshops", "Prompt School for schools, small businesses, and teams. AI for Business Growth for companies and associations. Live, on-site or virtual.", "/workshops/", "See workshops"),
         ]
     )
     return """<div>
@@ -646,8 +646,8 @@ def workshops_body():
     biz_tag = '<span class="tw-tag tw-tag--blue tw-tag--soft">Business</span>'
     cards = "".join([
         detail_card("grad", "Prompt School",
-            "A hands-on workshop that teaches people to think <em>with</em> AI, not just type at it &mdash; practical, responsible prompting built for the classroom and the public sector. Delivered to student cohorts, faculty, and public-sector teams.",
-            ["For schools, universities &amp; public institutions", "Responsible, practical prompt fluency", "Student, educator &amp; staff cohorts", "Hands-on and classroom-ready"],
+            "A hands-on workshop that teaches people to think <em>with</em> AI, not just type at it &mdash; practical, responsible prompting for classrooms, small businesses, and teams. Two workshops: <strong>Prompt School 1.0, Learn to prompt</strong> and <strong>Prompt School 2.0, Build an agent</strong>. <a href='https://joinpromptschool.com' style='color:var(--tw-blue);font-weight:700;'>joinpromptschool.com &rarr;</a>",
+            ["For schools, small businesses &amp; teams", "1.0 Learn to prompt &middot; 2.0 Build an agent", "Three hours, on site or online", "Hands-on, leave with a working agent"],
             "Learners who think clearly with AI.", tag_html=edu_tag),
         detail_card("route", "AI for Business Growth",
             "A working session that turns AI from hype into measurable growth &mdash; helping teams find where AI actually moves the business and put it to work. Tailored for organizations and the groups that convene them.",
@@ -919,7 +919,7 @@ def approach_body():
 def about_body():
     est_list = "".join(
         '<div style="display:flex;gap:10px;align-items:flex-start;font-weight:600;"><span style="color:var(--tw-red);">&#9656;</span>{t}</div>'.format(t=t)
-        for t in ["Strategy &amp; digital maturity", "Technology transformation", "Security awareness", "Workforce development"]
+        for t in ["Strategy &amp; digital maturity", "Technology transformation", "Security awareness", "Workforce development", "Based in Prince George&rsquo;s County, Maryland"]
     )
     return """<div>
   <div class="band" style="background:var(--tw-blue);padding:96px 28px 84px;overflow:hidden;">
@@ -935,7 +935,7 @@ def about_body():
     <div class="wrap" style="max-width:1100px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:48px;align-items:start;">
       <div>
         {eb_story}
-        <h2 class="h2-display" style="font-size:clamp(1.8rem,3.6vw,2.75rem);line-height:1.02;margin:14px 0 22px;max-width:20ch;">Two decades of turning change into capability</h2>
+        <h2 class="h2-display" style="font-size:clamp(1.8rem,3.6vw,2.75rem);line-height:1.02;margin:14px 0 22px;max-width:20ch;">Fifteen years of turning change into capability</h2>
         <p class="lead" style="margin:0 0 18px;color:var(--text-body);line-height:1.65;">Founded in 2011, Treadwell Agency has been a focused leader in strategy, technology transformation, and security awareness &mdash; helping organizations meet each wave of change with confidence rather than fear.</p>
         <p style="margin:0;color:var(--text-body);line-height:1.65;">What began as a strategy and security practice has grown into a human-first transformation agency for the age of AI. Through every shift, one thing has stayed constant: technology moves fast, but people determine whether change succeeds. Today we partner with corporations, institutions, and public agencies to prepare leaders, employees, and businesses for the future of work.</p>
       </div>
