@@ -310,7 +310,7 @@ def home_body():
       <div class="topic-grid" style="display:grid;grid-template-columns:1.4fr 1fr;gap:36px;align-items:center;">
         <div>
           {eb}
-          <h3 style="font-family:var(--font-display);font-weight:900;text-transform:uppercase;font-size:clamp(1.6rem,3vw,2.4rem);letter-spacing:-.02em;line-height:1.02;margin:14px 0 12px;">Prompt School. Learn to prompt. Build an agent.</h3>
+          <h3 style="font-family:var(--font-display);font-weight:900;text-transform:uppercase;font-size:clamp(1.6rem,3vw,2.4rem);letter-spacing:-.02em;line-height:1.02;margin:14px 0 12px;">Prompt School</h3>
           <p style="margin:0 0 22px;color:rgba(10,10,10,.78);line-height:1.55;max-width:52ch;">A hands-on, three-hour workshop in two levels. 1.0 teaches your people to brief an AI so it does what they mean. 2.0 has them build a real workflow and leave with an agent they made. On site or online, for schools, small businesses, and teams. Next public session: Bowie State University, Nov 10.ble roadmap.</p>
           <a class="tw-btn tw-btn--primary" href="https://joinpromptschool.com">See Prompt School</a>
         </div>
@@ -321,7 +321,7 @@ def home_body():
     </article>
   </div>
 </section>""".format(
-        eb=eyebrow("Workshop · Prompt School", "var(--tw-black)"),
+        eb=eyebrow("AI Training", "var(--tw-black)"),
         cta=CTA_MAILTO,
         facts="".join(
             '<div style="background:rgba(10,10,10,.06);border-radius:10px;padding:16px 18px;">'
@@ -662,8 +662,6 @@ def workshops_body():
       <h1 class="hero-h1" style="font-size:clamp(2.4rem,5.5vw,4.5rem);line-height:.95;color:#fff;max-width:18ch;">Workshops that turn AI curiosity into capability</h1>
       <p class="lead" style="color:rgba(255,255,255,.82);max-width:56ch;margin-top:22px;">Live, human-first workshops that meet people where they are &mdash; from classrooms to boardrooms &mdash; and leave them able to use AI with confidence and judgment.</p>
       <div class="tag-row" style="margin-top:30px;">
-        <span class="tw-tag tw-tag--yellow tw-tag--solid">Prompt School</span>
-        <span class="tw-tag tw-tag--blue tw-tag--solid">AI for Business Growth</span>
       </div>
     </div>
   </div>
